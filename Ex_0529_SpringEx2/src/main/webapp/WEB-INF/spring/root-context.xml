@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- BoardDAOImp dao = new BoardDAOImp(); -->
+	<bean id="dao" class="dao.BoardDAOImp"></bean>
+	
+	<!-- BoardServiceImp serviceBean = new BoardServiceImp(dao); -->
+	<bean id="serviceBean" class="service.BoardServiceImp">
+		<constructor-arg ref="dao"></constructor-arg>
+	</bean>
+	
+</beans>

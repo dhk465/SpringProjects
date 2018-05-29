@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="p1" class="vo.PersonVO">
+		<!-- setter injection -->
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="30"></property>
+		<property name="tel" value="010-1111-1111"></property>
+	</bean>
+	<bean id="p2" class="vo.PersonVO">
+		<!-- constructor injection -->
+		<constructor-arg value="박길동"></constructor-arg>
+		<constructor-arg value="40"></constructor-arg>
+		<constructor-arg value="010-112-1111"></constructor-arg>
+	</bean>
+	
+	<!-- applicationScope,
+	requestScope,
+	pageScope,
+	sessionScope,
+	root-context.xml에서 저장한 객체는 applicationScope -->
+	
+	<bean id="nameBean" class="java.lang.String">
+		<constructor-arg value="황길동"></constructor-arg>
+	</bean>
+	<bean id="ageBean" class="java.lang.Integer">
+		<constructor-arg value="33"></constructor-arg>
+	</bean>
+	<bean id="telBean" class="java.lang.String">
+		<constructor-arg value="010-113-1111"></constructor-arg>
+	</bean>
+	
+	<bean id="p3" class="vo.PersonVO">
+		<!-- 객체 생성시 외부에서 정해놓은 값을 가져다가 참조하는 구조를
+		dependency injection (DI) 라고 함 -->
+		<property name="name" ref="nameBean"></property>
+		<property name="age" ref="ageBean"></property>
+		<property name="tel" ref="telBean"></property>
+	</bean>
+	
+	<bean id="p4" class="vo.PersonVO" scope="prototype">
+		<constructor-arg ref="nameBean"></constructor-arg>
+		<constructor-arg ref="ageBean"></constructor-arg>
+		<constructor-arg ref="telBean"></constructor-arg>
+	</bean>
+</beans>
